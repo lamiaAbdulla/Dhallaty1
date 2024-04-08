@@ -7,8 +7,7 @@ import time
 import pandas as pd
 from PIL import Image
 
-#assistant_id = "asst_DH0RX9UNPbdVSo1UJeYbpmRF"
-openai.api_key = st.secrets['api_secret']
+openai.api_key = os.getenv('API_KEY')
 
 #Load responses from CSV (if it exists)
 responses_df = pd.read_csv("secure_responses.csv", encoding='utf-8') if "secure_responses.csv" in os.listdir() else pd.DataFrame()
