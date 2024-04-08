@@ -1,0 +1,10 @@
+streamlit
+pandas
+openai
+Pillow  # PIL fork commonly used these days
+csv
+io
+os
+time
+collections  # Might already be included in Python, check if needed
+struct
