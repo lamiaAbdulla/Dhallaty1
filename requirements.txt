@@ -1,9 +1,8 @@
 streamlit
 pandas
 openai
-Pillow==8.4.0  # PIL fork commonly used these days
-io
+Pillow==8.4.0  
 os
 time
-collections  # Might already be included in Python, check if needed
+collections  
 struct
