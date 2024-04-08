@@ -7,7 +7,14 @@ import time
 import pandas as pd
 from PIL import Image
 
-openai.api_key = os.getenv('API_KEY')
+openai.api_key = os.environ.get('API_KEY')
+
+if api_key is not None:
+  # Use the API key in your code
+  # (Replace the following with your actual API interaction)
+  print(f"Using API key: {api_key[:3]}... (truncated for security)")
+else:
+  print("API key not found in environment variables.")
 
 #Load responses from CSV (if it exists)
 responses_df = pd.read_csv("secure_responses.csv", encoding='utf-8') if "secure_responses.csv" in os.listdir() else pd.DataFrame()
