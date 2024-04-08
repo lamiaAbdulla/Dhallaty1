@@ -1,8 +1,7 @@
 streamlit
 pandas
 openai
-Pillow  # PIL fork commonly used these days
-csv
+Pillow==8.4.0  # PIL fork commonly used these days
 io
 os
 time
