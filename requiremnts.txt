@@ -1,0 +1,8 @@
+streamlit
+pandas
+openai
+Pillow == 9.5.0
+os
+time
+collections  
+struct
