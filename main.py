@@ -7,7 +7,7 @@ import time
 import pandas as pd
 from PIL import Image
 
-openai.api_key = os.environ.get('API_KEY')
+openai.api_key = st.secrets['API_KEY']
 
 if api_key is not None:
   # Use the API key in your code
