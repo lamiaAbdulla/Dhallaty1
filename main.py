@@ -8,13 +8,13 @@ import pandas as pd
 from PIL import Image
 from dotenv import load_dotenv
 
-def configure():
-    load_dotenv()
+
+    
 
 
 openai.api_key = os.getenv("api_secret")
 
-configure()
+load_dotenv()
 #if api_key is not None:
   # Use the API key in your code
   # (Replace the following with your actual API interaction)
