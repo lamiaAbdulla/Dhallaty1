@@ -9,12 +9,12 @@ from PIL import Image
 
 openai.api_key = st.secrets['api_secret']
 
-if api_key is not None:
+#if api_key is not None:
   # Use the API key in your code
   # (Replace the following with your actual API interaction)
-  print(f"Using API key: {api_key[:3]}... (truncated for security)")
-else:
-  print("API key not found in environment variables.")
+ # print(f"Using API key: {api_key[:3]}... (truncated for security)")
+#else:
+#  print("API key not found in environment variables.")
 
 #Load responses from CSV (if it exists)
 responses_df = pd.read_csv("secure_responses.csv", encoding='utf-8') if "secure_responses.csv" in os.listdir() else pd.DataFrame()
