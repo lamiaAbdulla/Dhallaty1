@@ -7,7 +7,7 @@ import openai
 import pandas as pd
 import os
 from collections import defaultdict
-from main import edit_df1
+#from main import edit_df1
 #import streamlit.elements.data_frame_editor as data_frame
 from PIL import Image
 
