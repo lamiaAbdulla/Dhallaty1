@@ -15,6 +15,6 @@ if st.button("Login"):
     st.success("Login successful!")
     # Display user-specific content here (replace with your desired functionality)
     st.write("Welcome,", username)
-    st.page_link("main.py", label="Home", icon="🏠")
+    st.page_link("pages/main.py", label="Home", icon="🏠")
   else:
     st.error("Invalid username or password.")
