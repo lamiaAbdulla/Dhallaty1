@@ -112,7 +112,7 @@ if st.button("ارسلي الوصف"):
 
 
 st.title("التطابقات")
-selected_item = st.selectbox("اختاري طلب لإظهار التطابقات", [f"{item["description"]}"  for item in found_items["items"].values()])
+selected_item = st.selectbox("اختاري طلب لإظهار التطابقات", [f'{item["description"]}'  for item in found_items["items"].values()])
 
 
 selected_item_info = None
