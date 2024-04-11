@@ -1,6 +1,6 @@
 import streamlit as st
 
-logo_image = st.image(r'C:\Users\lamoa\Downloads\dhallaty logo.png', width=500)
+#logo_image = st.image(r'C:\Users\lamoa\Downloads\dhallaty logo.png', width=500)
 
 # Placeholder for storing usernames and passwords (replace with a database or secure storage)
 credentials = {"444@pnu.edu.sa": "1", "username2": "password2"}
