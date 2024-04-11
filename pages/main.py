@@ -8,13 +8,11 @@ import pandas as pd
 from PIL import Image
 from dotenv import load_dotenv
 
-def configure():
-    load_dotenv()
 
 
 openai.api_key = os.getenv("api_secret")
 
-configure()
+load_dotenv()
 
 responses_df = pd.read_csv("secure_responses.csv", encoding='utf-8') if "secure_responses.csv" in os.listdir() else pd.DataFrame()
 
