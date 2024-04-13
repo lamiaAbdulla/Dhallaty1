@@ -45,7 +45,7 @@ def upload_to_s3(file, bucket_name, key):
     return st.success("File uploaded successfully!")
 
 
-def get_public_image_url(key):
+def image_url(key):
     public_url = f"https://{BUCKET_NAME}.s3.{REGION_NAME}.amazonaws.com/{key}"
     return public_url
 
@@ -58,7 +58,7 @@ def uploaded_image():
         key = uploaded_file.name  
         upload_to_s3(uploaded_file, BUCKET_NAME, key)
 
-        image_url = get_public_image_url(key)
+        image_url = image_url(key)
         return image_url
 
 
