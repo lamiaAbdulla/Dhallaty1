@@ -1,20 +1,25 @@
 import streamlit as st
+import boto3
+import os
+import pandas as pd
 
-#logo_image = st.image(r'C:\Users\lamoa\Downloads\dhallaty logo.png', width=500)
+st.set_page_config(page_title="Dhallaty", page_icon=":mag_right:", layout="wide")
 
-# Placeholder for storing usernames and passwords (replace with a database or secure storage)
+st.image("https://dhallaty-imagess.s3.amazonaws.com/dhallaty+logo.png", width = 400)
+
+
 credentials = {"444@pnu.edu.sa": "1", "username2": "password2"}
- 
-# Login form elements
-username = st.text_input("Username:")
-password = st.text_input("Password:", type="password")  # Hide password input
 
-# Login button and logic
+username = st.text_input("Username:")
+password = st.text_input("Password:", type="password")  
+
+
 if st.button("Login"):
   if username in credentials and credentials[username] == password:
     st.success("Login successful!")
-    # Display user-specific content here (replace with your desired functionality)
+    
     st.write("Welcome,", username)
-    st.page_link("pages/main.py", label="Home", icon="🏠")
+    st.page_link("pages\main.py", label="Home", icon="🏠")
   else:
     st.error("Invalid username or password.")
+
