@@ -58,16 +58,18 @@ def uploaded_image():
         key = uploaded_file.name  
         upload_to_s3(uploaded_file, BUCKET_NAME, key)
 
-        image_url = image_url(key)
-        return image_url
+        
+        processed_image = image_url(key)
+        imageUrl = processed_image
+        return imageUrl
 
 
-def join_and_submit(text_input, image_url = None):
+def join_and_submit(text_input, imageurl = None):
   data = {}
 
   data["text"] = text_input
   if image_url is not None:
-    data["image"] = image_url 
+    data["image"] = imageurl 
 
   return data
 #----------------------------------------------end images code block-------------------------------------------------------
@@ -77,7 +79,7 @@ st.title("مساعدك لضالتك")
 st.write(":violet[نرجو كتابة الوصف مع مراعاة (اللون / المكان /العلامة التجارية) ]")
 
 user_input = st.text_area("اوصف ضالتك هنا")
-image_url = uploaded_image()
+imageUrl = uploaded_image()
 
 
 
@@ -86,15 +88,15 @@ if st.button("ارسلي الوصف"):
     response = openai.chat.completions.create(
         model="gpt-3.5-turbo",
         messages=[
-            {"role": "system", "content": f"Please analyze the following description of a lost item and ONLY ANSWER with this exact format. type, brand, color, place. stick with the format,FOUR sections only (NO MATTER WHAT). you can answer with a sorry message if you did not understand the input. NOTE: here is some words that you might face with their definitions (1- حلق = Earrings 2- شنطة = bag 3- سلسال = necklace 4- سواره = bracelet):\n{user_input}"},
+            {"role": "system", "content": f"Please analyze the following description of a lost item and ONLY ANSWER with this exact format. type, brand, color, place. stick with the format,FOUR sections only (NO MATTER WHAT). you can answer with a sorry message if you did not understand the input. NOTE: here is some words that you might face with their definitions (1- حلق = Earrings 2- شنطة = bag 3- سلسال = necklace 4- سواره = bracelet 5- ريال = money):\n{user_input}"},
  ])
 
     analysis = response.choices[0].message.content
 
-    joined_data = join_and_submit(user_input, image_url)
+    joined_data = join_and_submit(user_input, imageUrl)
     if len(analysis.split(",")) >= 4:
-     image_url = joined_data.get("image", None)
-     new_row = pd.DataFrame({"description": [user_input], "analysis": [analysis],"image": [image_url]})
+     imageUrl = joined_data.get("image", None)
+     new_row = pd.DataFrame({"description": [user_input], "analysis": [analysis],"image": [imageUrl]})
      responses_df = pd.concat([responses_df, new_row], ignore_index=True)
 
 
@@ -117,7 +119,7 @@ def edit_df1():
       description = row.description
       image = row.image
       analysis = str(row.analysis)  #ensure that it is a string
-      analysis_list = analysis.split(",")
+      analysis_list = analysis.lower().split(",")
 
       if len(analysis_list) >= 4:
         #Create a unique key based on a counter 
