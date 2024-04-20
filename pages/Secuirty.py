@@ -89,19 +89,22 @@ if st.button("ارسلي الوصف"):
  ])
 
     found_analysis = security_response.choices[0].message.content
+  
+    if len(found_analysis.split(",")) >= 4:
+        secuirty_new_row = pd.DataFrame({"description": [security_input], "analysis": [found_analysis]})
+        secuirty_responses_df = pd.read_csv(security_responses_file) if os.path.exists(security_responses_file) else pd.DataFrame()
+        secuirty_responses_df = pd.concat([secuirty_responses_df, secuirty_new_row], ignore_index=True)
 
-    secuirty_new_row = pd.DataFrame({"description": [security_input], "analysis": [found_analysis]})
-    secuirty_responses_df = pd.read_csv(security_responses_file) if os.path.exists(security_responses_file) else pd.DataFrame()
-    secuirty_responses_df = pd.concat([secuirty_responses_df, secuirty_new_row], ignore_index=True)
 
+        try:
+            secuirty_responses_df.to_csv(security_responses_file, index=False)
+            st.success("تم حفظ الوصف و يمكنك تفقد خانة التطابقات لرؤية قائمة المفقودات")
 
-    try:
-        secuirty_responses_df.to_csv(security_responses_file, index=False)
-        st.success("تم حفظ الوصف و سننبهك عند وجود تطابق.")
+        except PermissionError:
+            st.error("حدث فشل في إرسال الطلب، الرجاء التأكد من ارسال وصف واضح ")
 
-    except PermissionError:
-        st.error("Permission error: Failed to save the description. Please check file permissions.")
-
+    else:
+        st.error("حدث فشل في إرسال الطلب، الرجاء التأكد من ارسال وصف واضح ") 
 
 
 #  -----------------------------------------end of openai.chat.completions.create --------------------------------------------------
