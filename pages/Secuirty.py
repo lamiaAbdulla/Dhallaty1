@@ -65,7 +65,7 @@ def jaccard_similarity_ranked(query_doc, documents):
       {
           "analysis": list(documents["items"][list(documents["items"].keys())[i]]["analysis"]),
           "description": descriptions[i],
-          "similarity": similarities[i]*100,
+          "similarity": f"{similarities[i]*100:.2f}%",
           "image": image[i]
       }
       for i in sorted_indices
