@@ -23,7 +23,7 @@ def edit_df2():
       description = row.description
 
       analysis = str(row.analysis)  
-      analysis_list = analysis.split(",")
+      analysis_list = analysis.lower().split(",")
 
       if len(analysis_list) >= 4:
         item_key = f"item{len(items_with_description['items']) + 1}"
@@ -85,7 +85,7 @@ if st.button("ارسلي الوصف"):
     security_response = openai.chat.completions.create(
         model="gpt-3.5-turbo",
         messages=[
-            {"role": "system", "content": f"Please analyze the following description of a lost item and ONLY ANSWER with this exact format. type, brand, color, place. stick with the format,FOUR sections only (NO MATTER WHAT). you can answer with a sorry message if you did not understand the input. NOTE: here is some words that you might face with their definitions (1- حلق = Earrings 2- شنطة = bag 3- سلسال = necklace 4- سواره = bracelet):\n{security_input}"},
+            {"role": "system", "content": f"Please analyze the following description of a lost item and ONLY ANSWER with this exact format. type, brand, color, place. stick with the format,FOUR sections only (NO MATTER WHAT). you can answer with a sorry message if you did not understand the input. NOTE: here is some words that you might face with their definitions (1- حلق = Earrings 2- شنطة = bag 3- سلسال = necklace 4- سواره = bracelet 5- ريال = money):\n{security_input}"},
  ])
 
     found_analysis = security_response.choices[0].message.content
