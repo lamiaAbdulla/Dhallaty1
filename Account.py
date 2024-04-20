@@ -19,7 +19,7 @@ if st.button("Login"):
     st.success("Login successful!")
     
     st.write("Welcome,", username)
-    st.page_link("pages\main.py", label="Home", icon="🏠")
+    st.page_link("pages\User.py", label="Home", icon="🏠")
   else:
     st.error("Invalid username or password.")
 
